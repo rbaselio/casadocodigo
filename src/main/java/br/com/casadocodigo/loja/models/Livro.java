@@ -2,6 +2,7 @@ package br.com.casadocodigo.loja.models;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -24,27 +27,44 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	
-	@NotBlank	
+
+	@NotBlank
 	private String titulo;
-	
+
 	@Lob
-	@Length(min=10)
-	@NotBlank	
+	@Length(min = 10)
+	@NotBlank
 	private String descricao;
-	
+
 	@DecimalMin("20")
 	private BigDecimal preco;
-	
+
 	@Min(50)
 	private Integer paginas;
-		
+
+	@Temporal(TemporalType.DATE)
+	private Calendar dataPublicacao;
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Calendar getdataPublicacao() {
+		return dataPublicacao;
+	}
+
+	public void setdataPublicacao(Calendar dataPublicacao) {
+		this.dataPublicacao = dataPublicacao;
+	}
+
 	@ManyToMany
-	@Size(min=1)
+	@Size(min = 1)
 	@NotNull
 	private List<Autor> autores = new ArrayList<Autor>();
-	
 
 	public List<Autor> getAutores() {
 		return autores;
@@ -60,15 +80,7 @@ public class Livro {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public String getdescricao() {
-		return descricao;
-	}
-
-	public void setdescricao(String descricao) {
-		this.descricao = descricao;
-	}
+	}	
 
 	public BigDecimal getPreco() {
 		return preco;
