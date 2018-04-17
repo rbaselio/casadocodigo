@@ -6,7 +6,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-<h:form>
+<h:form enctype="multipart/form-data">
 	<div>
 		<h:outputLabel value="Titulo" />
 		<h:inputText id="titulo" value="#{adminLivrosBean.livro.titulo}"
@@ -53,6 +53,12 @@
 		</h:selectManyListbox>
 		<h:message for="autores" />
 	</div>
+	<div>
+		<h:outputLabel value="Capa do Livro" />
+		<h:inputFile value="#{adminLivrosBean.capaLivro}" id="capaLivro" />
+		<h:message for="capaLivro" />
+	</div>
+
 	<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar}" />
 
 

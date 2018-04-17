@@ -45,6 +45,17 @@ public class Livro {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataPublicacao;
 
+	@ManyToMany
+	@Size(min = 1)
+	@NotNull
+	private List<Autor> autores = new ArrayList<Autor>();
+
+	private String capaPath;
+
+	public String getCapaPath() {
+		return capaPath;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -61,11 +72,6 @@ public class Livro {
 		this.dataPublicacao = dataPublicacao;
 	}
 
-	@ManyToMany
-	@Size(min = 1)
-	@NotNull
-	private List<Autor> autores = new ArrayList<Autor>();
-
 	public List<Autor> getAutores() {
 		return autores;
 	}
@@ -80,7 +86,7 @@ public class Livro {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}	
+	}
 
 	public BigDecimal getPreco() {
 		return preco;
@@ -102,6 +108,11 @@ public class Livro {
 	public String toString() {
 		return "Livro [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", preco=" + preco + ", paginas="
 				+ paginas + ", autores=" + autores + "]";
+	}
+
+	public void setCapaPath(String caminhoArquivo) {
+		this.capaPath = caminhoArquivo;
+
 	}
 
 }

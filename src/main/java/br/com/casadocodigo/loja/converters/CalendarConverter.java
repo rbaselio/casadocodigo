@@ -17,7 +17,6 @@ public class CalendarConverter implements Converter {
 
 	public CalendarConverter() {
 		converter.setPattern("dd/MM/yyyy");
-		converter.setPattern("dd/MM/yyyy");
 		converter.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
 
 	}
