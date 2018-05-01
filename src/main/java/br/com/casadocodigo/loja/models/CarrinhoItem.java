@@ -8,8 +8,8 @@ public class CarrinhoItem {
 	public CarrinhoItem(Livro livro) {
 		this.livro = livro;
 		this.quantidade = 1;
-	}	
-	
+	}
+
 	public Livro getLivro() {
 		return livro;
 	}
@@ -25,8 +25,6 @@ public class CarrinhoItem {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-
-
 
 	@Override
 	public int hashCode() {
