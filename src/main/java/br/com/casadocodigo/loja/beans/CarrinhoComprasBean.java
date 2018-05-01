@@ -23,11 +23,11 @@ public class CarrinhoComprasBean {
 	public String add(Integer id) {
 		
 		
+		
 		Livro livro = livroDao.buscarPorId(id );
 		CarrinhoItem item = new CarrinhoItem(livro);
-		carrinho.add(item);
+		carrinho.add(item);	
 		
-		System.out.println("PASSEI");
 		
 		return "carrinho?faces-redirect=true";
 		
