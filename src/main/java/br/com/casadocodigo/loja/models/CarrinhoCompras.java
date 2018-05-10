@@ -10,12 +10,18 @@ import java.util.Set;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.client.WebTarget;
 
 import com.google.gson.Gson;
 
-
 import br.com.casadocodigo.loja.daos.CompraDao;
+import br.com.casadocodigo.service.PagamentoGateway;
 
 
 @Named
@@ -29,6 +35,10 @@ public class CarrinhoCompras implements Serializable{
 
     @Inject
     private CompraDao compraDao;
+    
+    @Inject
+    private PagamentoGateway pagamentoGateway;
+    
 
     public void add(CarrinhoItem item) {
         itens.add(item);
@@ -65,18 +75,24 @@ public class CarrinhoCompras implements Serializable{
 		
 	}
 
-	public void finalizar(Usuario usuario) {
-		Compra compra = new Compra();
-	    compra.setUsuario(usuario);
+	public void finalizar(Compra compra) {
+		
 		compra.setItens(this.toJson());	   
-	    compraDao.salvar(compra);		
+	    compraDao.salvar(compra);	
+	    compra.setTotal(getTotal());
+	    
+	    /*String response = pagamentoGateway.pagar(getTotal());
+	    System.out.println(response);*/
+	    
 	}
+
+	
 
 	private String toJson() {
 		
 		Gson gson = new Gson();
 		System.out.println("PASSEI");
-		System.out.println(gson.toJson(getItens()););
+		System.out.println(gson.toJson(getItens()));
 		
 		
 		JsonArrayBuilder builder = Json.createArrayBuilder();

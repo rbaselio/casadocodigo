@@ -1,6 +1,7 @@
 package br.com.casadocodigo.loja.models;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 
 @Entity
 public class Compra {
@@ -22,6 +24,11 @@ public class Compra {
 
 	@Lob
 	private String itens;
+	
+	private String uuid;
+	
+	private BigDecimal total;
+
 
 	public Integer getId() {
 		return id;
@@ -47,4 +54,27 @@ public class Compra {
 		this.itens = itens;
 	}
 
+	public String getUuid() {
+
+		return this.uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	
+	@PrePersist
+	public void createuuid() {
+		this.uuid = UUID.randomUUID().toString();
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+	
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
+	
+	
 }

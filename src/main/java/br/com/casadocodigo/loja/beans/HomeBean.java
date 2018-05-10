@@ -21,5 +21,10 @@ public class HomeBean {
 	public List<Livro> demaisLancamentos() {
 		return dao.demaisLancamentos();
 	}
+	
+
+	public List<Livro> demaisLivros() {
+		return dao.demaisLivros();
+	}
 
 }

@@ -45,4 +45,9 @@ public class LivroDao {
 
 	}
 
+	public List<Livro> demaisLivros() {
+		String jpql = "select l from Livro l order by l.id desc";
+		return manager.createQuery(jpql, Livro.class).getResultList();
+	}
+
 }
