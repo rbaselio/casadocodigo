@@ -25,6 +25,7 @@ public class Compra {
 	@Lob
 	private String itens;
 	
+
 	private String uuid;
 	
 	private BigDecimal total;
