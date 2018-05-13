@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,11 +56,12 @@ public class Livro {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataPublicacao;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@Size(min = 1)
 	@NotNull
 	@XmlElement(name="autor")
 	@XmlElementWrapper(name="autores")
+	
 	private List<Autor> autores = new ArrayList<Autor>();
 
 	private String capaPath;
